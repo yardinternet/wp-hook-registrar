@@ -2,30 +2,30 @@
 
 declare(strict_types=1);
 
-namespace Yard\SkeletonPackage;
+namespace Yard\Hooks;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Yard\SkeletonPackage\Console\ExampleCommand;
+use Yard\Hooks\Console\HooksCommand;
 
-class SkeletonPackageServiceProvider extends PackageServiceProvider
+class HooksServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('skeleton-package')
+            ->name('hooks')
             ->hasConfigFile()
             ->hasViews()
-            ->hasCommand(ExampleCommand::class);
+            ->hasCommand(HooksCommand::class);
     }
 
     public function packageRegistered(): void
     {
-        $this->app->singleton('Example', fn () => new Example($this->app));
+        $this->app->singleton('Hooks', fn () => new Hooks($this->app));
     }
 
     public function packageBooted(): void
     {
-        $this->app->make('Example');
+        $this->app->make('Hooks');
     }
 }
