@@ -6,7 +6,6 @@ namespace Yard\Hooks;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Yard\Hooks\Console\HooksCommand;
 
 class HooksServiceProvider extends PackageServiceProvider
 {
@@ -14,18 +13,16 @@ class HooksServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('hooks')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasCommand(HooksCommand::class);
+            ->hasConfigFile();
     }
 
     public function packageRegistered(): void
     {
-        $this->app->singleton('Hooks', fn () => new Hooks($this->app));
+        $this->app->singleton(HooksRegistrar::class, fn() => new HooksRegistrar(config('hooks.classNames')));
     }
 
     public function packageBooted(): void
     {
-        $this->app->make('Hooks');
+		app(HooksRegistrar::class)->registerHooks();
     }
 }
