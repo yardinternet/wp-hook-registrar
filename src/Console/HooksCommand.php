@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Yard\SkeletonPackage\Console;
+namespace Yard\Hooks\Console;
 
 use Illuminate\Console\Command;
-use Yard\SkeletonPackage\Facades\Example;
+use Yard\Hooks\Facades\Hooks;
 
-class ExampleCommand extends Command
+class HooksCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'example';
+    protected $signature = 'hooks';
 
     /**
      * The console command description.
@@ -29,7 +29,7 @@ class ExampleCommand extends Command
     public function handle(): void
     {
         $this->info(
-            Example::getQuote()
+            Hooks::getQuote()
         );
     }
 }

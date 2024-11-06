@@ -1,7 +1,7 @@
 {
-	"name": "yard/skeleton-package",
+	"name": "yard/hooks",
 	"type": "package",
-	"description": ":package_description",
+	"description": "WordPress Hooks Registration",
   "version": "1.0.0",
 	"license": "MIT",
   "config": {
@@ -24,12 +24,12 @@
 	},
   "autoload": {
 		"psr-4": {
-			"Yard\\SkeletonPackage\\": "src/"
+			"Yard\\Hooks\\": "src/"
 		}
 	},
   "autoload-dev": {
 		"psr-4": {
-			"Yard\\SkeletonPackage\\Tests\\": "tests/"
+			"Yard\\Hooks\\Tests\\": "tests/"
 		}
 	},
   "scripts": {
@@ -44,10 +44,10 @@
 	"extra": {
 		"acorn": {
 			"providers": [
-				"Yard\\SkeletonPackage\\SkeletonPackageServiceProvider"
+				"Yard\\Hooks\\HooksServiceProvider"
 			],
 			"aliases": {
-				"Example": "Yard\\SkeletonPackage\\Facades\\Example"
+				"Hooks": "Yard\\Hooks\\Facades\\Hooks"
 			}
 		}
 	}
