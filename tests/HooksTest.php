@@ -2,23 +2,34 @@
 
 declare(strict_types=1);
 
-it('can retrieve a random inspirational quote', function () {
-    $quote = app()->make('Hooks')->getQuote();
+use Yard\Hooks\HooksRegistrar;
+use Yard\Hooks\Tests\Stubs\ClassContainsHooks;
 
-    expect($quote)->tobe('For every Sage there is an Acorn.');
+
+beforeEach(function () {
+	$this->classContainsHooks = new ClassContainsHooks();
+	$this->registrar = new HooksRegistrar();
+	$this->registrar->addClass(ClassContainsHooks::class);
+	$this->registrar->addClassInstance(ClassContainsHooks::class, $this->classContainsHooks);
 });
 
-it('can retrieve post content', function () {
-    $postId = 123;
-    $post = new stdClass();
-    $post->post_content = 'Hello World!';
+it('can register action hooks', function () {
+	// Expect //
+	WP_Mock::expectActionAdded('save_post', [$this->classContainsHooks, 'doSomething'], 10, 2);
+	WP_Mock::expectActionAdded('save_post', [$this->classContainsHooks, 'doSomethingElse'], 5, 3);
+	WP_Mock::expectActionAdded('save_post', [$this->classContainsHooks, 'doSomethingWithDefaultArgs']);
 
-    WP_Mock::userFunction('get_post')
-        ->once()
-        ->with(123)
-        ->andReturn($post);
-
-    $postContent = app()->make('Hooks')->getPostContent($postId);
-
-    expect($postContent)->tobe('Hello World!');
+	// Act //
+	$this->registrar->registerHooks();
 });
+
+it('can register filter hooks', function () {
+	// Expect //
+	WP_Mock::expectFilterAdded('the_content', [$this->classContainsHooks, 'filterSomething'], 10, 2);
+	WP_Mock::expectFilterAdded('the_content', [$this->classContainsHooks, 'filterSomethingElse'], 5, 1);
+	WP_Mock::expectFilterAdded('the_content', [$this->classContainsHooks, 'filterSomethingElseWithDefaultArgs']);
+
+	// Act //
+	$this->registrar->registerHooks();
+});
+
