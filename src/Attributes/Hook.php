@@ -9,9 +9,8 @@ abstract class Hook
     public function __construct(
         public string $hookName,
         public int $priority = 10,
-        public int $acceptedArgs = 1
     ) {
     }
 
-    abstract public function register(callable $callable): void;
+    abstract public function register(callable $callable, int $acceptedArgs = 1): void;
 }

@@ -10,13 +10,13 @@ use Attribute;
 class Action extends Hook
 {
 
-    public function register(callable $callable): void
+    public function register(callable $callable, int $acceptedArgs = 1): void
     {
         add_action(
             $this->hookName,
             $callable,
             $this->priority,
-            $this->acceptedArgs
+            $acceptedArgs
         );
     }
 }

@@ -9,14 +9,14 @@ use Yard\Hooks\Attributes\Filter;
 
 class ClassContainsHooks
 {
-    #[Action('save_post', 10, 2)]
-    public function doSomething()
+    #[Action('save_post', 10)]
+    public function doSomething($one, $two)
     {
         //
     }
 
-    #[Action('save_post', 5, 3)]
-    public function doSomethingElse()
+    #[Action('save_post', 5)]
+    public function doSomethingElse($one, $two, $three)
     {
         //
     }
@@ -27,14 +27,14 @@ class ClassContainsHooks
         //
     }
 
-    #[Filter('the_content', 10, 2)]
-    public function filterSomething()
+    #[Filter('the_content', 10)]
+    public function filterSomething($one, $two)
     {
         //
     }
 
-    #[Filter('the_content', 5, 1)]
-    public function filterSomethingElse()
+    #[Filter('the_content', 5)]
+    public function filterSomethingElse($one)
     {
         //
     }

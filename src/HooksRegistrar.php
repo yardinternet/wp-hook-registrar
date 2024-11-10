@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Yard\Hooks;
 
+use Exception;
 use ReflectionAttribute;
 use ReflectionClass;
 use ReflectionException;
+use ReflectionMethod;
 use Yard\Hooks\Attributes\Hook;
 
 class HooksRegistrar
@@ -56,6 +58,7 @@ class HooksRegistrar
 
     /**
      * @throws ReflectionException
+     * @throws Exception
      */
     public function registerHooks(): void
     {
@@ -69,18 +72,40 @@ class HooksRegistrar
                     if (! $this->hasInstance($className)) {
                         $this->setInstance($className, (object)new $className());
                     }
-
-                    $callable = [
-                        $this->getInstance($className),
-                        $method->getName(),
-                    ];
-
-                    if (is_callable($callable)) {
-                        $hookClass = $attribute->newInstance();
-                        $hookClass->register($callable);
-                    }
+                    
+                    $hookClass = $attribute->newInstance();
+                    $hookClass->register(
+                        callable: $this->makeCallable($className, $method),
+                        acceptedArgs: $this->methodArgs($method)
+                    );
                 }
             }
         }
+    }
+
+    /**
+     * @param class-string $className
+     *
+     * @throws Exception
+     */
+    private function makeCallable(string $className, ReflectionMethod $method): callable
+    {
+        $callable = [
+            $this->getInstance($className),
+            $method->getName(),
+        ];
+
+        if (! is_callable($callable)) {
+            throw new Exception('Method is not callable');
+        }
+
+        return $callable;
+    }
+
+    private function methodArgs(ReflectionMethod $method): int
+    {
+        $methodArgs = $method->getNumberOfParameters();
+
+        return 0 !== $methodArgs ? $methodArgs : 1;
     }
 }
