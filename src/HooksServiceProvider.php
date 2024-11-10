@@ -18,11 +18,11 @@ class HooksServiceProvider extends PackageServiceProvider
 
     public function packageRegistered(): void
     {
-        $this->app->singleton(HooksRegistrar::class, fn() => new HooksRegistrar(config('hooks.classNames')));
+        $this->app->singleton(HooksRegistrar::class, fn () => new HooksRegistrar(config('hooks.classNames')));
     }
 
     public function packageBooted(): void
     {
-		app(HooksRegistrar::class)->registerHooks();
+        app(HooksRegistrar::class)->registerHooks();
     }
 }

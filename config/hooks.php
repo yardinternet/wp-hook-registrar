@@ -13,6 +13,6 @@ return [
     */
 
     'classNames' => [
-//		\App\Hooks\Theme::class,
-	],
+        //		\App\Hooks\Theme::class,
+    ],
 ];
