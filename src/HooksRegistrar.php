@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yard\Hooks;
 
 use ReflectionAttribute;
@@ -9,51 +11,76 @@ use Yard\Hooks\Attributes\Hook;
 
 class HooksRegistrar
 {
-	private array $instances = [];
+    /**
+     * @var array<class-string, object>
+     */
+    private array $instances = [];
 
-	public function __construct(private array $classNames = [])
-	{
-	}
+    /**
+     * @param array<class-string> $classNames
+     */
+    public function __construct(private array $classNames = [])
+    {
+    }
 
-	public function addClass(string $className): self
-	{
-		$this->classNames[] = $className;
+    /**
+     * @param class-string $className
+     */
+    public function addClass(string $className): self
+    {
+        $this->classNames[] = $className;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function addClassInstance(string $className, object $instance): self
-	{
-		$this->instances[$className] = $instance;
+    /**
+     * @param class-string $className
+     */
+    protected function getInstance(string $className): object
+    {
+        return $this->instances[$className];
+    }
 
-		return $this;
-	}
+    /**
+     * @param class-string $className
+     */
+    private function setInstance(string $className, object $instance): void
+    {
+        $this->instances[$className] = $instance;
+    }
 
-	/**
-	 * @throws ReflectionException
-	 */
-	public function registerHooks(): void
-	{
-		foreach ($this->classNames as $className) {
-			$reflectionClass = new ReflectionClass($className);
+    private function hasInstance(string $className): bool
+    {
+        return array_key_exists($className, $this->instances);
+    }
 
-			foreach ($reflectionClass->getMethods() as $method) {
-				$attributes = $method->getAttributes(Hook::class, ReflectionAttribute::IS_INSTANCEOF);
+    /**
+     * @throws ReflectionException
+     */
+    public function registerHooks(): void
+    {
+        foreach ($this->classNames as $className) {
+            $reflectionClass = new ReflectionClass($className);
 
-				foreach ($attributes as $attribute) {
-					if (! array_key_exists($className, $this->instances)) {
-						$this->instances[$className] = new $className();
-					}
+            foreach ($reflectionClass->getMethods() as $method) {
+                $attributes = $method->getAttributes(Hook::class, ReflectionAttribute::IS_INSTANCEOF);
 
-					$filterClass = $attribute->newInstance();
-					$filterClass->register(
-						[
-							$this->instances[$className],
-							$method->getName()
-						]
-					);
-				}
-			}
-		}
-	}
+                foreach ($attributes as $attribute) {
+                    if (! $this->hasInstance($className)) {
+                        $this->setInstance($className, (object)new $className());
+                    }
+
+                    $callable = [
+                        $this->getInstance($className),
+                        $method->getName(),
+                    ];
+
+                    if (is_callable($callable)) {
+                        $hookClass = $attribute->newInstance();
+                        $hookClass->register($callable);
+                    }
+                }
+            }
+        }
+    }
 }
