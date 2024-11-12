@@ -1,0 +1,16 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Yard\Hooks\Tests\Stubs;
+
+use Yard\Hooks\Attributes\Action;
+
+class ChildClassContainsHooks extends ClassContainsHooks
+{
+    #[Action('save_post', 10)]
+    public function doSomething($one, $two): string
+    {
+        return 'child';
+    }
+}

@@ -10,9 +10,9 @@ use Yard\Hooks\Attributes\Filter;
 class ClassContainsHooks
 {
     #[Action('save_post', 10)]
-    public function doSomething($one, $two)
+    public function doSomething($one, $two): string
     {
-        //
+        return 'parent';
     }
 
     #[Action('save_post', 5)]
