@@ -3,11 +3,13 @@
 declare(strict_types=1);
 
 use Yard\Hooks\HookRegistrar;
+use Yard\Hooks\Tests\Stubs\ChildClassContainsHooks;
 use Yard\Hooks\Tests\Stubs\ClassContainsHooks;
 
 beforeEach(function () {
+    // Arrange //
     $this->classContainsHooks = new ClassContainsHooks();
-    $this->registrar = new HooksRegistrar();
+    $this->childClassContainsHooks = new ChildClassContainsHooks();
     $this->registrar = new HookRegistrar();
 
     invokeProtectedMethod($this->registrar, 'setInstance', [
