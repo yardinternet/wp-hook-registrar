@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Config;
-use Yard\Hooks\HooksRegistrar;
+use Yard\Hooks\HookRegistrar;
 use Yard\Hooks\Tests\Stubs\ClassContainsHooks;
 
 it('registers hooks in classNames from config', function () {
@@ -14,9 +14,9 @@ it('registers hooks in classNames from config', function () {
             ClassContainsHooks::class,
         ]);
 
-    app()->singleton(HooksRegistrar::class, fn () => new HooksRegistrar(config('hooks.classNames')));
+    app()->singleton(HookRegistrar::class, fn () => new HookRegistrar(config('hooks.classNames')));
 
-    $registrar = app(HooksRegistrar::class);
+    $registrar = app(HookRegistrar::class);
     $classContainsHooks = new ClassContainsHooks();
 
     invokeProtectedMethod($registrar, 'setInstance', [
