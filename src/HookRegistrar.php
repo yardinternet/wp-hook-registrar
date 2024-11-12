@@ -11,7 +11,7 @@ use ReflectionException;
 use ReflectionMethod;
 use Yard\Hooks\Attributes\Hook;
 
-class HooksRegistrar
+class HookRegistrar
 {
     /**
      * @var array<class-string, object>
