@@ -2,31 +2,33 @@
 
 declare(strict_types=1);
 
+use Facades\Yard\Hooks\HookRegistrar;
 use Illuminate\Support\Facades\Config;
-use Yard\Hooks\HookRegistrar;
 use Yard\Hooks\Tests\Stubs\ClassContainsHooks;
 
-it('registers hooks in classNames from config', function () {
-    // Arrange //
+beforeEach(function () {
     Config::shouldReceive('get')
         ->with('hooks.classNames', null)
         ->andReturn([
             ClassContainsHooks::class,
         ]);
+});
 
-    app()->singleton(HookRegistrar::class, fn () => new HookRegistrar(config('hooks.classNames')));
-
-    $registrar = app(HookRegistrar::class);
-    $classContainsHooks = new ClassContainsHooks();
-
-    invokeProtectedMethod($registrar, 'setInstance', [
-        ClassContainsHooks::class,
-        $classContainsHooks,
-    ]);
-
+it('should register hooks once the package is booted', function () {
     // Expect //
-    WP_Mock::expectActionAdded('save_post', [$classContainsHooks, 'doSomething'], 10, 2);
+    HookRegistrar::shouldReceive('registerHooks')
+        ->once();
 
     // Act //
-    $registrar->registerHooks();
+    $provider = new \Yard\Hooks\HooksServiceProvider(app());
+    $provider->packageBooted();
+});
+
+it('passes classNames from config into the HookRegistrar', function () {
+    // Act //
+    $registrar = app(\Yard\Hooks\HookRegistrar::class);
+
+    // Expect //
+    expect(getPrivateProperty($registrar, 'classNames'))->toBeArray()
+        ->toContain(ClassContainsHooks::class);
 });
