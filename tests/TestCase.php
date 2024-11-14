@@ -32,7 +32,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            'Yard\Hooks\HooksServiceProvider',
+            \Yard\Hooks\HooksServiceProvider::class,
         ];
     }
 }

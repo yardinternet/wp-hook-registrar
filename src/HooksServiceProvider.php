@@ -18,7 +18,11 @@ class HooksServiceProvider extends PackageServiceProvider
 
     public function packageRegistered(): void
     {
-        $this->app->bind(HookRegistrar::class, fn () => new HookRegistrar(config('hooks.classNames')));
+        $this->app->bind(HookRegistrar::class, function () {
+            $config = ConfigData::from(config('hooks'));
+
+            return new HookRegistrar($config->classNames());
+        });
     }
 
     public function packageBooted(): void
