@@ -6,6 +6,7 @@ namespace Yard\Hooks;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Yard\Hooks\Config\ConfigData;
 
 class HooksServiceProvider extends PackageServiceProvider
 {
