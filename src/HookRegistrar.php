@@ -21,7 +21,7 @@ class HookRegistrar
     /**
      * @param array<class-string> $classNames
      */
-    public function __construct(private array $classNames = [])
+    public function __construct(private array $classNames = [], private array $files = [])
     {
     }
 
@@ -31,6 +31,13 @@ class HookRegistrar
     public function addClass(string $className): self
     {
         $this->classNames[] = $className;
+
+        return $this;
+    }
+
+    public function addFiles(array $files): self
+    {
+        $this->files[] = $files;
 
         return $this;
     }
@@ -62,6 +69,12 @@ class HookRegistrar
      */
     public function registerHooks(): void
     {
+        $this->registerClassHooks();
+        $this->registerFileHooks();
+    }
+
+    private function registerClassHooks(): void
+    {
         foreach ($this->classNames as $className) {
             $reflectionClass = new ReflectionClass($className);
 
@@ -72,7 +85,7 @@ class HookRegistrar
                     if (! $this->hasInstance($className)) {
                         $this->setInstance($className, (object)new $className());
                     }
-                    
+
                     $hookClass = $attribute->newInstance();
                     $hookClass->register(
                         callable: $this->makeCallable($className, $method),
@@ -107,5 +120,11 @@ class HookRegistrar
         $methodArgs = $method->getNumberOfParameters();
 
         return 0 !== $methodArgs ? $methodArgs : 1;
+    }
+
+    private function registerFileHooks(): void
+    {
+        // read attributes from this files
+        
     }
 }

@@ -63,3 +63,16 @@ describe('child class hooks', function () {
     });
 
 });
+
+describe('files', function () {
+    it('can register hooks from files', function () {
+        // Arrange //
+        $this->registrar->addFiles([__DIR__ . '/Stubs/file-contains-hooks.php']);
+
+        // Expect //
+        WP_Mock::expectActionAdded('save_post', 'doSomethingOnSavePost', 10, 2);
+
+        // Act //
+        $this->registrar->registerHooks();
+    });
+});

@@ -6,7 +6,7 @@ namespace Yard\Hooks\Attributes;
 
 use Attribute;
 
-#[Attribute(Attribute::TARGET_METHOD|Attribute::IS_REPEATABLE)]
+#[Attribute(Attribute::TARGET_METHOD|Attribute::IS_REPEATABLE|Attribute::TARGET_FUNCTION)]
 class Action extends Hook
 {
 
