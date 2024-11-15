@@ -44,4 +44,11 @@ class ClassContainsHooks
     {
         //
     }
+
+    #[Action('init')]
+    #[Action('admin_init')]
+    public function doSomethingOnInitAndAdminInit()
+    {
+        //
+    }
 }

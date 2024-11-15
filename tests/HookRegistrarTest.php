@@ -40,6 +40,15 @@ describe('class hooks', function () {
         // Act //
         $this->registrar->registerHooks();
     });
+
+    it('can register the same method on multiple hooks', function () {
+        // Expect //
+        WP_Mock::expectActionAdded('init', [$this->classContainsHooks, 'doSomethingOnInitAndAdminInit']);
+        WP_Mock::expectActionAdded('admin_init', [$this->classContainsHooks, 'doSomethingOnInitAndAdminInit']);
+
+        // Act //
+        $this->registrar->registerHooks();
+    });
 });
 
 describe('child class hooks', function () {
