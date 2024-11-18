@@ -11,16 +11,18 @@ beforeEach(function () {
     $this->classContainsHooks = new ClassContainsHooks();
     $this->childClassContainsHooks = new ChildClassContainsHooks();
     $this->registrar = new HookRegistrar();
-
-    invokeProtectedMethod($this->registrar, 'setInstance', [
-        ClassContainsHooks::class,
-        $this->classContainsHooks,
-    ]);
-
-    $this->registrar->addClass(ClassContainsHooks::class);
 });
 
 describe('class hooks', function () {
+    beforeEach(function () {
+        // Arrange //
+        invokeProtectedMethod($this->registrar, 'setInstance', [
+            ClassContainsHooks::class,
+            $this->classContainsHooks,
+        ]);
+        $this->registrar->addClass(ClassContainsHooks::class);
+    });
+
     it('can register action hooks', function () {
         // Expect //
         WP_Mock::expectActionAdded('save_post', [$this->classContainsHooks, 'doSomething'], 10, 2);
@@ -52,7 +54,6 @@ describe('class hooks', function () {
 });
 
 describe('child class hooks', function () {
-
     beforeEach(function () {
         // Arrange //
         invokeProtectedMethod($this->registrar, 'setInstance', [
@@ -66,6 +67,17 @@ describe('child class hooks', function () {
         // Expect //
         WP_Mock::expectActionAdded('save_post', [$this->childClassContainsHooks, 'doSomething'], 10, 2);
         WP_Mock::expectActionNotAdded('save_post', [$this->classContainsHooks, 'doSomething']);
+        WP_Mock::expectActionAdded('save_post', [$this->childClassContainsHooks, 'doSomethingElse'], 5, 3);
+        WP_Mock::expectFilterAdded('the_content', [$this->childClassContainsHooks, 'filterSomething'], 10, 2);
+
+        // Act //
+        $this->registrar->registerHooks();
+    });
+
+    it('can prevent hook registration in parent using method override', function () {
+        // Expect //
+        WP_Mock::expectActionNotAdded('fake_hook', [$this->classContainsHooks, 'shouldNotGetRegistered']);
+        WP_Mock::expectActionNotAdded('fake_hook', [$this->childClassContainsHooks, 'shouldNotGetRegistered']);
 
         // Act //
         $this->registrar->registerHooks();

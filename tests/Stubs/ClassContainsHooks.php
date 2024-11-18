@@ -51,4 +51,10 @@ class ClassContainsHooks
     {
         //
     }
+
+    #[Action('fake_hook')]
+    public function shouldNotGetRegistered()
+    {
+        throw new \Exception('This method should never be registered');
+    }
 }
