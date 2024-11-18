@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Facades\Yard\Hook\HookRegistrar;
+use Facades\Yard\Hook\Registrar;
 use Illuminate\Support\Facades\Config;
 use Yard\Hook\Tests\Stubs\ClassContainsHooks;
 
@@ -17,7 +17,7 @@ describe('class hooks', function () {
 
     it('should register hooks once the package is booted', function () {
         // Expect //
-        HookRegistrar::shouldReceive('registerHooks')
+        Registrar::shouldReceive('registerHooks')
             ->once();
 
         // Act //
@@ -25,9 +25,9 @@ describe('class hooks', function () {
         $provider->packageBooted();
     });
 
-    it('passes classNames from config into the HookRegistrar', function () {
+    it('passes classNames from config into the Registrar', function () {
         // Act //
-        $registrar = app(\Yard\Hook\HookRegistrar::class);
+        $registrar = app(\Yard\Hook\Registrar::class);
 
         // Expect //
         expect(getPrivateProperty($registrar, 'classNames'))->toBeArray()

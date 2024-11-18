@@ -72,7 +72,7 @@ $classNames = [
     \Plugin\AnotherClassContainsHooks::class,
 ];
 
-$registrar = new \Yard\Hook\HookRegistrar($classNames);
+$registrar = new \Yard\Hook\Registrar($classNames);
 $registrar->registerHooks();
 ```
 

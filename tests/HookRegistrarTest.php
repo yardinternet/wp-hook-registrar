@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Yard\Hook\HookRegistrar;
+use Yard\Hook\Registrar;
 use Yard\Hook\Tests\Stubs\ChildClassContainsHooks;
 use Yard\Hook\Tests\Stubs\ClassContainsHooks;
 
@@ -10,7 +10,7 @@ beforeEach(function () {
     // Arrange //
     $this->classContainsHooks = new ClassContainsHooks();
     $this->childClassContainsHooks = new ChildClassContainsHooks();
-    $this->registrar = new HookRegistrar();
+    $this->registrar = new Registrar();
 });
 
 describe('class hooks', function () {

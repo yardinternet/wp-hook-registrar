@@ -10,7 +10,7 @@ use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;
 
-class HookRegistrar
+class Registrar
 {
     /**
      * @var array<class-string, object>
