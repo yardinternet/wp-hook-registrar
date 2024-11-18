@@ -1,8 +1,7 @@
 {
   "name": "yard/wp-hook-registrar",
   "type": "package",
-  "description": "An Acorn package for WordPress hooks registration.",
-  "version": "1.0.0",
+  "description": "An Acorn package for WordPress hook registration.",
   "license": "MIT",
   "config": {
     "sort-packages": true,
