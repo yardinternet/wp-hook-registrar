@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Yard\Hooks\Tests\Stubs;
+namespace Yard\Hook\Tests\Stubs;
 
-use Yard\Hooks\Action;
-use Yard\Hooks\Filter;
+use Yard\Hook\Action;
+use Yard\Hook\Filter;
 
 class ClassContainsHooks
 {

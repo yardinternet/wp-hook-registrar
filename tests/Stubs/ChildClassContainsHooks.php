@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Yard\Hooks\Tests\Stubs;
+namespace Yard\Hook\Tests\Stubs;
 
-use Yard\Hooks\Action;
+use Yard\Hook\Action;
 
 class ChildClassContainsHooks extends ClassContainsHooks
 {

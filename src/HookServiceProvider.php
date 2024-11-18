@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yard\Hooks;
+namespace Yard\Hook;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
