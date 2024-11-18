@@ -2,15 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Yard\Hooks\Attributes;
+namespace Yard\Hooks;
 
-abstract class Hook
+interface Hook
 {
     public function __construct(
-        public string $hookName,
-        public int $priority = 10,
-    ) {
-    }
+        string $hookName,
+        int $priority = 10,
+    );
 
-    abstract public function register(callable $callable, int $acceptedArgs = 1): void;
+    public function register(callable $callable, int $acceptedArgs = 1): void;
 }

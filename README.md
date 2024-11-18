@@ -106,8 +106,7 @@ You can add as many hooks to the same method as you want.
 
 namespace App\Hooks;
 
-use Yard\Hooks\Attributes\Action;
-use Yard\Hooks\Attributes\Filter;
+use Yard\Hooks\Action;use Yard\Hooks\Filter;
 
 class Theme
 {

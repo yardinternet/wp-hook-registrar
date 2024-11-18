@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Yard\Hooks\Config;
+namespace Yard\Hooks;
 
-class PluginData
+class PluginConfig
 {
     /**
      * @param string $path
@@ -15,7 +15,7 @@ class PluginData
         public array $classNames = [],
     ) {
     }
-    
+
     /**
      * @param array<string, mixed> $config
      */

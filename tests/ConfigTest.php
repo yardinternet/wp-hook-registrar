@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use Yard\Hooks\Config\ConfigData;
-use Yard\Hooks\Config\PluginData;
+use Yard\Hooks\Config;
+use Yard\Hooks\PluginConfig;
 
 describe('configuration', function () {
     it('can create configData from empty config', function () {
-        $configData = ConfigData::from([]);
+        $configData = Config::from([]);
 
-        expect($configData)->toBeInstanceOf(ConfigData::class);
+        expect($configData)->toBeInstanceOf(Config::class);
     });
 
     it('can create configData', function () {
@@ -22,9 +22,9 @@ describe('configuration', function () {
             ],
         ];
 
-        $configData = ConfigData::from($hooksConfig);
+        $configData = Config::from($hooksConfig);
 
-        expect($configData)->toBeInstanceOf(ConfigData::class);
+        expect($configData)->toBeInstanceOf(Config::class);
     });
 
     it('gets classNames from configData', function () {
@@ -34,7 +34,7 @@ describe('configuration', function () {
             ],
         ];
 
-        $configData = ConfigData::from($hooksConfig);
+        $configData = Config::from($hooksConfig);
 
         expect($configData->classNames())->toBeArray()
             ->toContain(\Yard\Hooks\Tests\Stubs\ClassContainsHooks::class);
@@ -45,15 +45,15 @@ describe('configuration', function () {
             \Yard\Hooks\Tests\Stubs\ClassContainsHooks::class,
         ];
 
-        $plugin = new PluginData(
+        $plugin = new PluginConfig(
             'acf/acf.php',
             [
                 \Yard\Hooks\Tests\Stubs\ChildClassContainsHooks::class,
             ],
         );
 
-        $config = new ConfigData($classNames, [$plugin]);
-        
+        $config = new Config($classNames, [$plugin]);
+
         WP_Mock::userFunction('is_plugin_active', [
             'times' => 1,
             'args' => ['acf/acf.php'],
@@ -69,14 +69,14 @@ describe('configuration', function () {
             \Yard\Hooks\Tests\Stubs\ClassContainsHooks::class,
         ];
 
-        $plugin = new PluginData(
+        $plugin = new PluginConfig(
             'acf/acf.php',
             [
                 \Yard\Hooks\Tests\Stubs\ChildClassContainsHooks::class,
             ],
         );
 
-        $config = new ConfigData($classNames, [$plugin]);
+        $config = new Config($classNames, [$plugin]);
 
         WP_Mock::userFunction('is_plugin_active', [
             'times' => 1,

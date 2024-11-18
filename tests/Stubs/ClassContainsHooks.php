@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Yard\Hooks\Tests\Stubs;
 
-use Yard\Hooks\Attributes\Action;
-use Yard\Hooks\Attributes\Filter;
+use Yard\Hooks\Action;
+use Yard\Hooks\Filter;
 
 class ClassContainsHooks
 {

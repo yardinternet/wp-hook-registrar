@@ -21,7 +21,7 @@ describe('class hooks', function () {
             ->once();
 
         // Act //
-        $provider = new \Yard\Hooks\HooksServiceProvider(app());
+        $provider = new \Yard\Hooks\HookServiceProvider(app());
         $provider->packageBooted();
     });
 

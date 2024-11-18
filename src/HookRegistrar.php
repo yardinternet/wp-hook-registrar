@@ -9,7 +9,6 @@ use ReflectionAttribute;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;
-use Yard\Hooks\Attributes\Hook;
 
 class HookRegistrar
 {
@@ -72,7 +71,7 @@ class HookRegistrar
                     if (! $this->hasInstance($className)) {
                         $this->setInstance($className, (object)new $className());
                     }
-                    
+
                     $hookClass = $attribute->newInstance();
                     $hookClass->register(
                         callable: $this->makeCallable($className, $method),
