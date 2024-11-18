@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Facades\Yard\Hooks\HookRegistrar;
+use Facades\Yard\Hook\HookRegistrar;
 use Illuminate\Support\Facades\Config;
-use Yard\Hooks\Tests\Stubs\ClassContainsHooks;
+use Yard\Hook\Tests\Stubs\ClassContainsHooks;
 
 describe('class hooks', function () {
     beforeEach(function () {
@@ -21,13 +21,13 @@ describe('class hooks', function () {
             ->once();
 
         // Act //
-        $provider = new \Yard\Hooks\HookServiceProvider(app());
+        $provider = new \Yard\Hook\HookServiceProvider(app());
         $provider->packageBooted();
     });
 
     it('passes classNames from config into the HookRegistrar', function () {
         // Act //
-        $registrar = app(\Yard\Hooks\HookRegistrar::class);
+        $registrar = app(\Yard\Hook\HookRegistrar::class);
 
         // Expect //
         expect(getPrivateProperty($registrar, 'classNames'))->toBeArray()

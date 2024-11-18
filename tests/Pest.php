@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-use Yard\Hooks\Tests\TestCase;
 
-uses(TestCase::class)->in(__DIR__);
+uses(Yard\Hook\Tests\TestCase::class)->in(__DIR__);
 
 /**
  * @param array<int, mixed> $parameters

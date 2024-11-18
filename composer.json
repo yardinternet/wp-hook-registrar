@@ -24,12 +24,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Yard\\Hooks\\": "src/"
+      "Yard\\Hook\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Yard\\Hooks\\Tests\\": "tests/"
+      "Yard\\Hook\\Tests\\": "tests/"
     }
   },
   "scripts": {

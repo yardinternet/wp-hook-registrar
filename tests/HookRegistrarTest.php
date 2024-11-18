@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Yard\Hooks\HookRegistrar;
-use Yard\Hooks\Tests\Stubs\ChildClassContainsHooks;
-use Yard\Hooks\Tests\Stubs\ClassContainsHooks;
+use Yard\Hook\HookRegistrar;
+use Yard\Hook\Tests\Stubs\ChildClassContainsHooks;
+use Yard\Hook\Tests\Stubs\ClassContainsHooks;
 
 beforeEach(function () {
     // Arrange //

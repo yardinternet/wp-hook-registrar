@@ -1,10 +1,10 @@
 # wp-hook-registrar
 
-[![Code Style](https://github.com/yardinternet/hooks/actions/workflows/format-php.yml/badge.svg?no-cache)](https://github.com/yardinternet/hooks/actions/workflows/format-php.yml)
-[![PHPStan](https://github.com/yardinternet/hooks/actions/workflows/phpstan.yml/badge.svg?no-cache)](https://github.com/yardinternet/hooks/actions/workflows/phpstan.yml)
-[![Tests](https://github.com/yardinternet/hooks/actions/workflows/run-tests.yml/badge.svg?no-cache)](https://github.com/yardinternet/hooks/actions/workflows/run-tests.yml)
-[![Code Coverage Badge](https://github.com/yardinternet/hooks/blob/badges/coverage.svg)](https://github.com/yardinternet/hooks/actions/workflows/badges.yml)
-[![Lines of Code Badge](https://github.com/yardinternet/hooks/blob/badges/lines-of-code.svg)](https://github.com/yardinternet/hooks/actions/workflows/badges.yml)
+[![Code Style](https://github.com/yardinternet/wp-hook-registrar/actions/workflows/format-php.yml/badge.svg?no-cache)](https://github.com/yardinternet/wp-hook-registrar/actions/workflows/format-php.yml)
+[![PHPStan](https://github.com/yardinternet/wp-hook-registrar/actions/workflows/phpstan.yml/badge.svg?no-cache)](https://github.com/yardinternet/wp-hook-registrar/actions/workflows/phpstan.yml)
+[![Tests](https://github.com/yardinternet/wp-hook-registrar/actions/workflows/run-tests.yml/badge.svg?no-cache)](https://github.com/yardinternet/wp-hook-registrar/actions/workflows/run-tests.yml)
+[![Code Coverage Badge](https://github.com/yardinternet/wp-hook-registrar/blob/badges/coverage.svg)](https://github.com/yardinternet/wp-hook-registrar/actions/workflows/badges.yml)
+[![Lines of Code Badge](https://github.com/yardinternet/wp-hook-registrar/blob/badges/lines-of-code.svg)](https://github.com/yardinternet/wp-hook-registrar/actions/workflows/badges.yml)
 
 An Acorn package for WordPress Hook Registration.
 
@@ -72,7 +72,7 @@ $classNames = [
     \Plugin\AnotherClassContainsHooks::class,
 ];
 
-$registrar = new \Yard\Hooks\HookRegistrar($classNames);
+$registrar = new \Yard\Hook\HookRegistrar($classNames);
 $registrar->registerHooks();
 ```
 
@@ -106,7 +106,8 @@ You can add as many hooks to the same method as you want.
 
 namespace App\Hooks;
 
-use Yard\Hooks\Action;use Yard\Hooks\Filter;
+use Yard\Hook\Action;
+use Yard\Hook\Filter;
 
 class Theme
 {

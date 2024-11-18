@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yard\Hooks\Tests;
+namespace Yard\Hook\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
 
@@ -32,7 +32,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            \Yard\Hooks\HookServiceProvider::class,
+            \Yard\Hook\HookServiceProvider::class,
         ];
     }
 }
