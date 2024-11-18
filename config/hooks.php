@@ -17,20 +17,6 @@ return [
         // \App\Hooks\Theme::class,
     ],
 
-    'files' => [
-        // 'app/assets.php',
-        // 'app/setup.php',
-    ],
-
-    'directories' => [
-        // 'app/Hooks',
-    ],
-
-    'namespaces' => [
-        // 'App\Hooks',
-    ],
-    
-
     /*
     |--------------------------------------------------------------------------
     | Plugin-Specific Hooks
