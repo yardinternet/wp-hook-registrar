@@ -37,18 +37,23 @@ class ConfigData
             ->toArray();
     }
 
+    /**
+     * @return Collection<int, class-string>
+     */
     private function pluginClassnames(): Collection
     {
         if (count($this->plugins) === 0) {
             return collect();
         }
 
-        return
-            $this->activePlugins()
-                ->map(fn (PluginData $plugin) => $plugin->classNames)
-                ->flatten();
+        return $this->activePlugins()
+            ->map(fn (PluginData $plugin) => $plugin->classNames)
+            ->flatten();
     }
 
+    /**
+     * @return Collection<int, PluginData>
+     */
     private function activePlugins(): Collection
     {
         return collect($this->plugins)
