@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Yard\Hooks\Config;
+namespace Yard\Hooks;
 
 use Illuminate\Support\Collection;
 
-class ConfigData
+class Config
 {
     /**
      * @param array<int, class-string> $classNames
-     * @param array<int, PluginData> $plugins
+     * @param array<int, PluginConfig> $plugins
      */
     public function __construct(public array $classNames = [], public array $plugins = [])
     {
@@ -23,7 +23,7 @@ class ConfigData
     {
         return new self(
             $config['classNames'] ?? [],
-            PluginData::collect($config['plugins'] ?? []),
+            PluginConfig::collect($config['plugins'] ?? []),
         );
     }
 
@@ -47,17 +47,17 @@ class ConfigData
         }
 
         return $this->activePlugins()
-            ->map(fn (PluginData $plugin) => $plugin->classNames)
+            ->map(fn (PluginConfig $plugin) => $plugin->classNames)
             ->flatten();
     }
 
     /**
-     * @return Collection<int, PluginData>
+     * @return Collection<int, PluginConfig>
      */
     private function activePlugins(): Collection
     {
         return collect($this->plugins)
-            ->filter(function (PluginData $plugin) {
+            ->filter(function (PluginConfig $plugin) {
                 return \is_plugin_active($plugin->path);
             });
     }

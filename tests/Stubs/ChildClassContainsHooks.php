@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Yard\Hooks\Tests\Stubs;
 
-use Yard\Hooks\Attributes\Action;
+use Yard\Hooks\Action;
 
 class ChildClassContainsHooks extends ClassContainsHooks
 {
