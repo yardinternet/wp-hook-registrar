@@ -13,4 +13,9 @@ class ChildClassContainsHooks extends ClassContainsHooks
     {
         return 'child';
     }
+
+    public function shouldNotGetRegistered()
+    {
+        throw new \Exception('This method should not be registered');
+    }
 }
