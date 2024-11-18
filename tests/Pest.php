@@ -14,7 +14,6 @@ function invokeProtectedMethod(object $object, string $methodName, array $parame
 {
     $reflection = new \ReflectionClass($object);
     $method = $reflection->getMethod($methodName);
-    $method->setAccessible(true);
 
     return $method->invokeArgs($object, $parameters);
 }
@@ -26,7 +25,6 @@ function getPrivateProperty(object $object, string $propertyName): mixed
 {
     $reflectionClass = new \ReflectionClass($object);
     $property = $reflectionClass->getProperty($propertyName);
-    $property->setAccessible(true);
 
     return $property->getValue($object);
 }
