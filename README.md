@@ -52,7 +52,7 @@ To install this package using Composer, follow these steps:
    wp acorn vendor:publish --provider="Yard\Hooks\HooksServiceProvider"
    ```
 
-5. Register all your project hooks in the published configuration file `app/config/hooks.php`.
+5. Register all your project hooks in the published configuration file `config/hooks.php`.
 
 ## Installation in WordPress plugins
 
