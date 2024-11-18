@@ -54,19 +54,17 @@ To install this package using Composer, follow these steps:
 
 5. Register all your project hooks in the published configuration file `app/config/hooks.php`.
 
-
 ## Installation in WordPress plugins
 
 To use this package in a standard WordPress plugin, you can use the `HookRegistrar` to register hooks.
-You can skip step 3 and 4 from the installation instructions above and instead add the following to your plugin's 
+You can skip step 3 and 4 from the installation instructions above and instead add the following to your plugin's
 main file:
-
 
 ```php
 /**
  * Plugin Name: My Plugin
  */
- 
+
 require __DIR__ . '/vendor/autoload.php';
 
 $classNames = [
@@ -96,7 +94,7 @@ public function filterSomething(): mixed
 ```
 
 Notice that you do not need to pass the number of accepted arguments to the `Action` and `Filter` attributes as you would
-with the `add_action` and `add_filter` functions. Instead, the number of accepted arguments is determined by the method 
+with the `add_action` and `add_filter` functions. Instead, the number of accepted arguments is determined by the method
 signature.
 
 You can add as many hooks to the same method as you want.
