@@ -1,4 +1,4 @@
-# wp-hooks
+# wp-hook-registrar
 
 [![Code Style](https://github.com/yardinternet/hooks/actions/workflows/format-php.yml/badge.svg?no-cache)](https://github.com/yardinternet/hooks/actions/workflows/format-php.yml)
 [![PHPStan](https://github.com/yardinternet/hooks/actions/workflows/phpstan.yml/badge.svg?no-cache)](https://github.com/yardinternet/hooks/actions/workflows/phpstan.yml)
@@ -6,7 +6,7 @@
 [![Code Coverage Badge](https://github.com/yardinternet/hooks/blob/badges/coverage.svg)](https://github.com/yardinternet/hooks/actions/workflows/badges.yml)
 [![Lines of Code Badge](https://github.com/yardinternet/hooks/blob/badges/lines-of-code.svg)](https://github.com/yardinternet/hooks/actions/workflows/badges.yml)
 
-An Acorn package for WordPress Hooks Registration.
+An Acorn package for WordPress Hook Registration.
 
 ## Features
 
@@ -30,14 +30,14 @@ To install this package using Composer, follow these steps:
     ```json
     {
       "type": "vcs",
-      "url": "git@github.com:yardinternet/yard-hooks.git"
+      "url": "git@github.com:yardinternet/wp-hook-registrar.git"
     }
     ```
 
 2. Install this package with Composer:
 
     ```sh
-    composer require yard/wp-hooks
+    composer require yard/wp-hook-registrar
     ```
 
 3. Run the Acorn WP-CLI command to discover this package:
