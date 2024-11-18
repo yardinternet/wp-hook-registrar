@@ -12,7 +12,7 @@ An Acorn package for WordPress Hook Registration.
 
 - [x] Register Hooks using php attributes
 - [x] Configure Hook registration using a config file
-- [x] Load plugin-specific hooks only when the respective plugin is active
+- [x] Load plugin-specific hooks only when the plugin is active
 
 See [config](./config/hooks.php) for all configuration options.
 
