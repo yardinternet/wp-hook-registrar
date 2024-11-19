@@ -43,11 +43,8 @@
   "extra": {
     "acorn": {
       "providers": [
-        "HookServiceProvider"
-      ],
-      "aliases": {
-        "Hooks": "Yard\\Hooks\\Facades\\Hooks"
-      }
+        "Yard\\Hook\\HookServiceProvider"
+      ]
     }
   }
 }
