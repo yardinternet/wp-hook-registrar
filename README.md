@@ -23,36 +23,25 @@ See [config](./config/hooks.php) for all configuration options.
 
 ## Installation
 
-To install this package using Composer, follow these steps:
-
-1. Add the following to the `repositories` section of your `composer.json`:
-
-    ```json
-    {
-      "type": "vcs",
-      "url": "git@github.com:yardinternet/wp-hook-registrar.git"
-    }
-    ```
-
-2. Install this package with Composer:
+1. Install this package with Composer:
 
     ```sh
     composer require yard/wp-hook-registrar
     ```
 
-3. Run the Acorn WP-CLI command to discover this package:
+2. Run the Acorn WP-CLI command to discover this package:
 
     ```shell
     wp acorn package:discover
     ```
 
-4. Publish the config file with:
+3. Publish the config file with:
 
    ```shell
    wp acorn vendor:publish --provider="Yard\Hooks\HooksServiceProvider"
    ```
 
-5. Register all your project hooks in the published configuration file `config/hooks.php`.
+4. Register all your project hooks in the published configuration file `config/hooks.php`.
 
 ## Installation in WordPress plugins
 
