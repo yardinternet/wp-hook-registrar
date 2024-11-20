@@ -38,7 +38,7 @@ See [config](./config/hooks.php) for all configuration options.
 3. Publish the config file with:
 
    ```shell
-   wp acorn vendor:publish --provider="Yard\Hooks\HooksServiceProvider"
+   wp acorn vendor:publish --provider="Yard\Hook\HookServiceProvider"
    ```
 
 4. Register all your project hooks in the published configuration file `config/hooks.php`.
@@ -67,7 +67,7 @@ $registrar->registerHooks();
 
 ## Hook Attributes
 
-This package provides two Attributes `Action` and `Filter` Attributes. They can be used to register hooks instead of the
+This package provides two Attributes: `Action` and `Filter`. They can be used to register hooks instead of the
 WordPress functions [add_action()](https://developer.wordpress.org/reference/functions/add_action/) and [add_filter()](https://developer.wordpress.org/reference/functions/add_filter/)
 
 This syntax allows you to place the hook registration directly above the method it invokes when the hook is triggered.
@@ -83,7 +83,7 @@ public function filterSomething(): mixed
 ```
 
 Notice that you do not need to pass the number of accepted arguments to the `Action` and `Filter` attributes as you would
-with the `add_action` and `add_filter` functions. Instead, the number of accepted arguments is determined by the method
+with `add_action()` and `add_filter()`. Instead, the number of accepted arguments is determined by the method
 signature.
 
 You can add as many hooks to the same method as you want.
