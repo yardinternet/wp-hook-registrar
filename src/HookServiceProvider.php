@@ -28,5 +28,10 @@ class HookServiceProvider extends PackageServiceProvider
     public function packageBooted(): void
     {
         app(Registrar::class)->registerHooks();
+
+
+
+
+
     }
 }
