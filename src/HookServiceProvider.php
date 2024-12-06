@@ -32,7 +32,5 @@ class HookServiceProvider extends PackageServiceProvider
 
 
 
-
-
     }
 }
