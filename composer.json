@@ -4,13 +4,16 @@
   "description": "An Acorn package for WordPress hook registration.",
   "license": "MIT",
   "config": {
-    "sort-packages": true,
     "allow-plugins": {
       "pestphp/pest-plugin": true
-    }
+    },
+    "platform": {
+      "php": "8.1"
+    },
+    "sort-packages": true
   },
   "require": {
-    "php": "8.1.*",
+    "php": ">=8.1",
     "spatie/laravel-package-tools": "^1.16"
   },
   "require-dev": {
