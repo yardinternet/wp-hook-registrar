@@ -56,9 +56,13 @@ class Config
      */
     private function activePlugins(): Collection
     {
+        if (! function_exists('is_plugin_active')) {
+            require_once ABSPATH . 'wp-admin/includes/plugin.php';
+        }
+
         return collect($this->plugins)
             ->filter(function (PluginConfig $plugin) {
-                return \is_plugin_active($plugin->path);
+                return is_plugin_active($plugin->path);
             });
     }
 }
