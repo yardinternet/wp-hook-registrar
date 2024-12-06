@@ -29,7 +29,10 @@ class HookServiceProvider extends PackageServiceProvider
     {
         app(Registrar::class)->registerHooks();
 
-        
+
+
+
+
 
     }
 }
