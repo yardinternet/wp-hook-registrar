@@ -6,44 +6,17 @@
 [![Code Coverage Badge](https://github.com/yardinternet/wp-hook-registrar/blob/badges/coverage.svg)](https://github.com/yardinternet/wp-hook-registrar/actions/workflows/badges.yml)
 [![Lines of Code Badge](https://github.com/yardinternet/wp-hook-registrar/blob/badges/lines-of-code.svg)](https://github.com/yardinternet/wp-hook-registrar/actions/workflows/badges.yml)
 
-An Acorn package for WordPress Hook Registration.
-
-## Features
-
-- [x] Register Hooks using php attributes
-- [x] Configure Hook registration using a config file
-- [x] Load plugin-specific hooks only when the plugin is active
-
-See [config](./config/hooks.php) for all configuration options.
-
-## Requirements
-
-- [Sage](https://github.com/roots/sage) >= 10.0
-- [Acorn](https://github.com/roots/acorn) >= 4.0
+Register Hooks using php attributes.
 
 ## Installation
 
-1. Install this package with Composer:
+Install this package with Composer:
 
     ```sh
     composer require yard/wp-hook-registrar
     ```
 
-2. Run the Acorn WP-CLI command to discover this package:
-
-    ```shell
-    wp acorn package:discover
-    ```
-
-3. Publish the config file with:
-
-   ```shell
-   wp acorn vendor:publish --provider="Yard\Hook\HookServiceProvider"
-   ```
-
-4. Register all your project hooks in the published configuration file `config/hooks.php`.
-
-## Installation in WordPress plugins
+## Usage
 
 To use this package in a standard WordPress plugin, you can use the `HookRegistrar` to register hooks.
 You can skip step 3 and 4 from the installation instructions above and instead add the following to your plugin's
