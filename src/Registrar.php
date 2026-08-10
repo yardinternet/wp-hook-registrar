@@ -90,7 +90,7 @@ class Registrar
 
 					$hookClass = $attribute->newInstance();
 					$hookClass->register(
-						callable: fn()=> $constant->getValue(),
+						callable: fn () => $constant->getValue(),
 						acceptedArgs: 0
 					);
 				}
