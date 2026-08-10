@@ -79,6 +79,22 @@ class Registrar
 					);
 				}
 			}
+
+			foreach ($reflectionClass->getReflectionConstants() as $constant) {
+				$attributes = $constant->getAttributes(Filter::class, ReflectionAttribute::IS_INSTANCEOF);
+
+				foreach ($attributes as $attribute) {
+					if (! $this->hasInstance($className)) {
+						$this->setInstance($className, (object)new $className());
+					}
+
+					$hookClass = $attribute->newInstance();
+					$hookClass->register(
+						callable: fn () => $constant->getValue(),
+						acceptedArgs: 0
+					);
+				}
+			}
 		}
 	}
 
