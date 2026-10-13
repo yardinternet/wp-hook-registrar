@@ -61,6 +61,13 @@ signature.
 
 You can add as many hooks to the same method as you want.
 
+For filters that need to return a fixed value you can use a class constant as a shorthand for a function that returns a fixed value.
+
+```php
+#[Filter(string $hookname, int $priority = 10)]
+public const FIXED_VALUE = 42;
+```
+
 ## Example
 
 ```php

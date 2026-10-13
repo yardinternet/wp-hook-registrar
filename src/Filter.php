@@ -6,7 +6,7 @@ namespace Yard\Hook;
 
 use Attribute;
 
-#[Attribute(Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE)]
+#[Attribute(Attribute::TARGET_METHOD | Attribute::TARGET_CLASS_CONSTANT | Attribute::IS_REPEATABLE)]
 class Filter implements Hook
 {
 	public function __construct(
